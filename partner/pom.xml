@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>	
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.mosip.pms</groupId>
 	<artifactId>pms-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>1.1.5.4</version>
-	
+
 	<name>partner-management-services</name>
 	<description>Parent project of MOSIP partner-management-services</description>
 	<url>https://github.com/mosip/partner-management-services</url>
-		
+
 	<licenses>
-          <license>
-                <name>MPL 2.0</name>
-                <url>https://www.mozilla.org/en-US/MPL/2.0/</url>
-          </license>
-        </licenses>
-	
+		<license>
+			<name>MPL 2.0</name>
+			<url>https://www.mozilla.org/en-US/MPL/2.0/</url>
+		</license>
+	</licenses>
+
 	<scm>
-                <connection>scm:git:git://github.com/mosip/partner-management-services.git</connection>
-                <developerConnection>scm:git:ssh://github.com:mosip/partner-management-services.git</developerConnection>
-                <url>https://github.com/mosip/partner-management-services</url>
-                <tag>HEAD</tag>
-        </scm>
-	
+		<connection>scm:git:git://github.com/mosip/partner-management-services.git</connection>
+		<developerConnection>scm:git:ssh://github.com:mosip/partner-management-services.git</developerConnection>
+		<url>https://github.com/mosip/partner-management-services</url>
+		<tag>HEAD</tag>
+	</scm>
+
 	<developers>
-                <developer>
-                  <name>Mosip</name>
-                  <email>mosip.emailnotifier@gmail.com</email>
-                  <organization>io.mosip</organization>
-                  <organizationUrl>https://github.com/mosip/partner-management-services</organizationUrl>
-                </developer>
-        </developers>
-	
+		<developer>
+			<name>Mosip</name>
+			<email>mosip.emailnotifier@gmail.com</email>
+			<organization>io.mosip</organization>
+			<organizationUrl>https://github.com/mosip/partner-management-services</organizationUrl>
+		</developer>
+	</developers>
+
 	<distributionManagement>
-                <snapshotRepository>
-                        <id>ossrh</id>
-                        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-                <repository>
-                        <id>ossrh</id>
-                        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
 	</distributionManagement>
-	
+
 	<repositories>
 		<repository>
-		  <id>ossrh</id>
-		  <name>Central Repository</name>
-		  <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		  <layout>default</layout>
-		  <snapshots>
-			<enabled>true</enabled>
-		  </snapshots>
+			<id>ossrh</id>
+			<name>Central Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 
 	<properties>
-		<kernel.version>1.1.5.2</kernel.version>		
+		<kernel.version>1.1.5.2</kernel.version>
 		<kernel-dataaccess-hibernate.version>1.1.5.2</kernel-dataaccess-hibernate.version>
 		<maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
 		<maven.war.plugin.version>3.1.0</maven.war.plugin.version>
@@ -68,13 +68,13 @@
 		<junit.version>4.12</junit.version>
 		<lombok.version>1.18.8</lombok.version>
 		<doclint>none</doclint>
-		<kernel-websubclient-api.version>1.1.5.5-SNAPSHOT</kernel-websubclient-api.version>
+		<kernel-websubclient-api.version>1.1.5.5</kernel-websubclient-api.version>
 	</properties>
-	
-	<modules>		
+
+	<modules>
 		<module>policy-validator</module>
 		<module>pms-common</module>
-		<module>policy-management-service</module>		
+		<module>policy-management-service</module>
 		<module>partner-management-service</module>
 	</modules>
 
@@ -90,18 +90,32 @@
 		</profile>
 	</profiles>
 
-	<dependencies>		
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.9.RELEASE</version>
+	</parent>
+
+	<dependencies>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.9.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.mosip.kernel/kernel-auth-adapter -->
 		<dependency>
+			<groupId>io.mosip.kernel</groupId>
+			<artifactId>kernel-auth-adapter</artifactId>
+			<version>1.1.5.5</version>
+		</dependency>
+
+		<dependency>
+
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
-		</dependency>		
-	<dependency>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
@@ -113,9 +127,9 @@
 			<version>2.3.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>javax.activation</groupId>
-		    <artifactId>activation</artifactId>
-		    <version>1.1</version>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
@@ -123,23 +137,23 @@
 			<version>2.3.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.mockito</groupId>
-		    <artifactId>mockito-core</artifactId>
-		    <version>2.22.0</version>
-		    <scope>test</scope>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>2.22.0</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.javassist</groupId>
-		    <artifactId>javassist</artifactId>
-		    <version>3.27.0-GA</version>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.27.0-GA</version>
 		</dependency>
 		<dependency>
 			<groupId>io.mosip.kernel</groupId>
 			<artifactId>kernel-logger-logback</artifactId>
 			<version>1.1.5.2</version>
 		</dependency>
-	</dependencies>	
-	<build>	
+	</dependencies>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -156,61 +170,61 @@
 				<version>3.2.0</version>
 				<executions>
 					<execution>
-					 	<id>attach-javadocs</id>
-					  	<goals>
+						<id>attach-javadocs</id>
+						<goals>
 							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-                         		<doclint>none</doclint>
-                	  	</configuration>
-                	</plugin>	
+					<doclint>none</doclint>
+				</configuration>
+			</plugin>
 			<plugin>
-				  <groupId>org.sonatype.plugins</groupId>
-				  <artifactId>nexus-staging-maven-plugin</artifactId>
-				  <version>1.6.7</version>
-				  <extensions>true</extensions>
-				  <configuration>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
 					<serverId>ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>false</autoReleaseAfterClose>
-				  </configuration>
+				</configuration>
 			</plugin>
-		 	<plugin>
-				  <groupId>org.apache.maven.plugins</groupId>
-				  <artifactId>maven-source-plugin</artifactId>
-				  <version>2.2.1</version>
-				  <executions>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
 					<execution>
 						<id>attach-sources</id>
-					  	<goals>
+						<goals>
 							<goal>jar-no-fork</goal>
-					  	</goals>
+						</goals>
 					</execution>
-				  </executions>
+				</executions>
 			</plugin>
-		
-	                <plugin>
-				  <groupId>org.apache.maven.plugins</groupId>
-				  <artifactId>maven-gpg-plugin</artifactId>
-				  <version>1.5</version>
-				  <executions>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
 					<execution>
-						  <id>sign-artifacts</id>
-						  <phase>verify</phase>
-						  <goals>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
 							<goal>sign</goal>
-						  </goals>
-						  <configuration>
-                					<gpgArguments>
-                    						<arg>--pinentry-mode</arg>
-                    						<arg>loopback</arg>
-                					</gpgArguments>
-            					  </configuration>
+						</goals>
+						<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
 					</execution>
-				  </executions>
-        		</plugin>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -246,29 +260,29 @@
 				</configuration>
 			</plugin>
 			<plugin>
-    			<groupId>pl.project13.maven</groupId>
-			<artifactId>git-commit-id-plugin</artifactId>
-			<version>3.0.1</version>
-			<executions>
-        			<execution>
-			        	<id>get-the-git-infos</id>
-					<goals>
-						<goal>revision</goal>
-            				</goals>
-            				<phase>validate</phase>
- 				</execution>
- 			</executions>
- 			<configuration>
-				<generateGitPropertiesFile>true</generateGitPropertiesFile>
-				<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-                    		<includeOnlyProperties>
-                        		<includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
-                        		<includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
-                    		</includeOnlyProperties>
-                    		<commitIdGenerationMode>full</commitIdGenerationMode>
- 				<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-				<!-- <format>json</format> -->
-			</configuration>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>get-the-git-infos</id>
+						<goals>
+							<goal>revision</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<generateGitPropertiesFile>true</generateGitPropertiesFile>
+					<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+					<includeOnlyProperties>
+						<includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
+						<includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
+					</includeOnlyProperties>
+					<commitIdGenerationMode>full</commitIdGenerationMode>
+					<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+					<!-- <format>json</format> -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
